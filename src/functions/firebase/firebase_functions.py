@@ -27,7 +27,6 @@ def firebase_upload(city, state):
 
         cities_ref.set(data, merge=True)
     else:
-
         airbnb_flag = False
         list_price_flag = False
 
@@ -54,18 +53,24 @@ def upload_data(cities, state):
     """
     Utilizes multithreading to concurrently upload data to a Firebase Database.
     """
+    
+    try:    
+        # Set and initilize Firebase credentials
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
+        cred = credentials.Certificate("./credentials.json")
+        firebase_admin.initialize_app(cred)
 
-    # Set and initilize Firebase credentials
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
-    cred = credentials.Certificate("./credentials.json")
-    firebase_admin.initialize_app(cred)
+        threads = []
 
-    threads = []
+        for city in cities:
+            thread = threading.Thread(target=firebase_upload, args=(city, state))
+            thread.start()
+            threads.append(thread)
 
-    for city in cities:
-        thread = threading.Thread(target=firebase_upload, args=(city, state))
-        thread.start()
-        threads.append(thread)
+        for thread in threads:
+            thread.join()
 
-    for thread in threads:
-        thread.join()
+        return True
+    
+    except Exception as e:
+        return False

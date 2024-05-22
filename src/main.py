@@ -37,10 +37,14 @@ def main():
                 # Upload Data to Firebase
                 if os.path.exists("credentials.json"):
                     print("4 of 5: Uploading data...")
-                    upload_data(processed_data, user_input[2])
+
+                    if not upload_data(processed_data, user_input[2]):
+                        print(
+                            "Upload skipped, Firebase credentials are not valid."
+                        )
                 else:
                     print(
-                        "4 of 5: Skipping upload, Firebase credentials are not found."
+                        "4 of 5: Upload skipped, Firebase credentials are not found."
                     )
 
                 # Print Results to Console
