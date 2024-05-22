@@ -11,7 +11,7 @@ def firebase_upload(city, state):
 
     db_ref = firestore.client()
     state_ref = db_ref.collection(state)
-    cities_ref = state_ref.document(city["Name"])
+    cities_ref = state_ref.document(city["city_name"])
     city_ref = cities_ref.get()
 
     data = {}
@@ -19,11 +19,11 @@ def firebase_upload(city, state):
     # Check if city exists in DB
     if not city_ref.exists:
 
-        data["city_name"] = city["Name"]
-        data["airbnb_rate"] = city["AirBnB Rate"]
-        data["growth_rate"] = city["Growth Rate"]
-        data["rental_yield"] = city["Rental Yield"]
-        data["list_prices"] = city["Listing Prices"]
+        data["city_name"] = city["city_name"]
+        data["airbnb_rate"] = city["airbnb_rate"]
+        data["growth_rate"] = city["growth_rate"]
+        data["rental_yield"] = city["rental_yield"]
+        data["list_prices"] = city["list_prices"]
 
         cities_ref.set(data, merge=True)
     else:
@@ -33,19 +33,19 @@ def firebase_upload(city, state):
         city_data = city_ref.to_dict()
 
         # Check if avg Airbnb rate is up-to-date
-        if city_data["airbnb_rate"] != city["AirBnB Rate"]:
-            data["airbnb_rate"] = city["AirBnB Rate"]
+        if city_data["airbnb_rate"] != city["airbnb_rate"]:
+            data["airbnb_rate"] = city["airbnb_rate"]
             airbnb_flag = True
 
         # Check if median list prices are up-to-date
-        if city_data["list_prices"] != city["Listing Prices"]:
-            data["list_prices"] = city["Listing Prices"]
+        if city_data["list_prices"] != city["list_prices"]:
+            data["list_prices"] = city["list_prices"]
             list_price_flag = True
 
         # Update values in DB
         if airbnb_flag or list_price_flag:
-            data["growth_rate"] = city["Growth Rate"]
-            data["rental_yield"] = city["Rental Yield"]
+            data["growth_rate"] = city["growth_rate"]
+            data["rental_yield"] = city["rental_yield"]
             cities_ref.set(data, merge=True)
 
 
@@ -53,8 +53,8 @@ def upload_data(cities, state):
     """
     Utilizes multithreading to concurrently upload data to a Firebase Database.
     """
-    
-    try:    
+
+    try:
         # Set and initilize Firebase credentials
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
         cred = credentials.Certificate("./credentials.json")
@@ -71,6 +71,6 @@ def upload_data(cities, state):
             thread.join()
 
         return True
-    
+
     except Exception as e:
         return False

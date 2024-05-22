@@ -13,11 +13,11 @@ def print_data(cities, state):
     print("\t" + "-" * 100 + "\n")
     
     for city in cities:        
-        print(f"\t{city["Name"]:<18}"
-              f"{list(city["Listing Prices"].values())[0]:<18}"
-              f"{city["AirBnB Rate"]:<19}"
-              f"{city["Growth Rate"]:<24}"
-              f"{city["Rental Yield"]}")
+        print(f"\t{city["city_name"]:<18}"
+              f"{list(city["list_prices"].values())[0]:<18}"
+              f"{city["airbnb_rate"]:<19}"
+              f"{city["growth_rate"]:<24}"
+              f"{city["rental_yield"]}")
 
 def fetch_list_prices(city, dates):
     """
@@ -44,11 +44,11 @@ def process_data(zillow_data, airbnb_data):
         if rate != "null":
             cities.append(
                 {
-                    "Name": city[0],
-                    "AirBnB Rate": currency_format(rate),
-                    "Growth Rate": price_growth_rate(city[-12], city[-1]),
-                    "Rental Yield": gross_rental_yield(rate, city[-1]),
-                    "Listing Prices": fetch_list_prices(city, zillow_data.columns),
+                    "city_name": city[0],
+                    "airbnb_rate": currency_format(rate),
+                    "growth_rate": price_growth_rate(city[-12], city[-1]),
+                    "rental_yield": gross_rental_yield(rate, city[-1]),
+                    "list_prices": fetch_list_prices(city, zillow_data.columns),
                 }
             )
 
