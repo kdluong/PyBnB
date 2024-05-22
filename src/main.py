@@ -35,14 +35,23 @@ def main():
                 processed_data = process_data(zillow_data, airbnb_data)
 
                 # Upload Data to Firebase
-                print("4 of 5: Uploading data...")
-                upload_data(processed_data, user_input[2])
+
+                if os.path.exists("credentials.json"):
+                    print("4 of 5: Uploading data...")
+                    upload_data(processed_data, user_input[2])
+                else:
+                    print(
+                        "4 of 5: Skipping upload, Firebase credentials are not found."
+                    )
 
                 # Print Results to Console
                 print("5 of 5: Printing data...")
                 print_data(processed_data, user_input[2])
 
-            if input("\nPress ENTER to continue ('Q' to quit): ").strip().upper() == "Q":
+            if (
+                input("\nPress ENTER to continue ('Q' to quit): ").strip().upper()
+                == "Q"
+            ):
                 quit_flag = True
             else:
                 os.system("clear")
