@@ -3,3 +3,4 @@ credentials.json
 myenv/
 .DS_Store
 *.egg-info/
+build/
