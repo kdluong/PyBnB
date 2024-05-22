@@ -3,11 +3,6 @@ import firebase_admin
 import threading
 from firebase_admin import credentials, firestore
 
-# Set and initilize Firebase credentials
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
-cred = credentials.Certificate("./credentials.json")
-firebase_admin.initialize_app(cred)
-
 
 def firebase_upload(city, state):
     """
@@ -59,6 +54,11 @@ def upload_data(cities, state):
     """
     Utilizes multithreading to concurrently upload data to a Firebase Database.
     """
+
+    # Set and initilize Firebase credentials
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
+    cred = credentials.Certificate("./credentials.json")
+    firebase_admin.initialize_app(cred)
 
     threads = []
 

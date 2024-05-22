@@ -35,7 +35,6 @@ def main():
                 processed_data = process_data(zillow_data, airbnb_data)
 
                 # Upload Data to Firebase
-
                 if os.path.exists("credentials.json"):
                     print("4 of 5: Uploading data...")
                     upload_data(processed_data, user_input[2])
