@@ -22,7 +22,6 @@ PyBnB is a powerful Python application designed to empower real estate investors
      
 2. [Optional, but recommended] Set up and activate a virtual environment to isolate project dependencies:
    
-   * Once the repository is cloned or the ZIP file is extracted, navigate to the following directory:
    ```sh
     python -m venv venv      # Create virtual environment
     source venv/bin/activate # Activate virtual environment (Unix/Linux)
