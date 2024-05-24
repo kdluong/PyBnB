@@ -1,7 +1,23 @@
 import os
-import firebase_admin
 import threading
-from firebase_admin import credentials, firestore
+import firebase_admin
+from firebase_admin import firestore, credentials
+
+
+def check_credentials():
+    # Search for credentials
+    if os.path.exists("credentials.json"):
+        try:
+            # Attempt to validate
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
+            cred = credentials.Certificate("./credentials.json")
+            firebase_admin.initialize_app(cred)
+
+            return True
+        except Exception:
+            pass
+
+    return False
 
 
 def firebase_upload(city, state):
@@ -55,10 +71,6 @@ def upload_data(cities, state):
     """
 
     try:
-        # Set and initilize Firebase credentials
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"
-        cred = credentials.Certificate("./credentials.json")
-        firebase_admin.initialize_app(cred)
 
         threads = []
 
@@ -72,5 +84,5 @@ def upload_data(cities, state):
 
         return True
 
-    except Exception as e:
+    except Exception:
         return False

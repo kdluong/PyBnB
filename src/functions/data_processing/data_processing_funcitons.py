@@ -10,7 +10,7 @@ def print_data(cities, state):
     print(f"\n{STATES[state]} Results:\n")
 
     print(f"\t{'City':<18}{'Avg List Price':<18}{'Avg AirBnB Rate':<19}{'Property Growth Rate':<24}{'Gross Rental Yield'}")
-    print("\t" + "-" * 100 + "\n")
+    print("\t" + "-" * 97 + "\n")
     
     for city in cities:        
         print(f"\t{city["city_name"]:<18}"

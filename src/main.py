@@ -2,11 +2,14 @@ import os
 from functions.zillow.zillow_functions import fetch_zillow_data
 from functions.airbnb.airbnb_functions import fetch_airbnb_data
 from functions.user_input.user_input_functions import get_user_input
-from functions.firebase.firebase_functions import upload_data
+from functions.firebase.firebase_functions import check_credentials, upload_data
 from functions.data_processing.data_processing_funcitons import process_data, print_data
 
 
 def main():
+
+    # Attempt to initilize Firebase credentials
+    credentials_exists = check_credentials()
 
     quit_flag = False
 
@@ -21,9 +24,9 @@ def main():
 
             # Check if city/state exists in Zillow dataset
             if user_input[0] == "1" and len(zillow_data) < 1:
-                print("\n*** Unable to find city, please try again. ***\n")
+                print("*** Unable to find city, please try again. ***\n")
             else:
-                print("1 of 5: Imported data from Zillow...")
+                print("1 of 5: Imported data from Zillow.")
                 # Scrape real-time Airbnb rates
                 print("2 of 5: Fetching real-time AirBnB rates...")
                 airbnb_data = fetch_airbnb_data(
@@ -35,7 +38,7 @@ def main():
                 processed_data = process_data(zillow_data, airbnb_data)
 
                 # Upload Data to Firebase
-                if os.path.exists("credentials.json"):
+                if credentials_exists:
                     print("4 of 5: Uploading data...")
 
                     if not upload_data(processed_data, user_input[2]):
