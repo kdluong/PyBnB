@@ -17,13 +17,13 @@ def main():
 
         if user_input[0] != "3":
             # Fetch Zillow city/state data
-            print("1 of 5: Importing data from Zillow...")
             zillow_data = fetch_zillow_data(user_input[1], user_input[2])
 
             # Check if city/state exists in Zillow dataset
             if user_input[0] == "1" and len(zillow_data) < 1:
                 print("\n*** Unable to find city, please try again. ***\n")
             else:
+                print("1 of 5: Imported data from Zillow...")
                 # Scrape real-time Airbnb rates
                 print("2 of 5: Fetching real-time AirBnB rates...")
                 airbnb_data = fetch_airbnb_data(
@@ -39,13 +39,9 @@ def main():
                     print("4 of 5: Uploading data...")
 
                     if not upload_data(processed_data, user_input[2]):
-                        print(
-                            "Upload skipped, Firebase credentials are not valid."
-                        )
+                        print("Upload skipped, Firebase credentials are not valid.")
                 else:
-                    print(
-                        "4 of 5: Upload skipped, Firebase credentials are not found."
-                    )
+                    print("4 of 5: Upload skipped, Firebase credentials are not found.")
 
                 # Print Results to Console
                 print("5 of 5: Printing data...")
