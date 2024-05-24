@@ -22,23 +22,18 @@ PyBnB is a powerful Python application designed to empower real estate investors
      
 2. [Optional, but recommended] Set up and activate a virtual environment to isolate project dependencies:
    
-   ```sh
-   **MacOS**
-   
-   pip3 install virtualenv     # Create virtual environment
-   virtualenv myenv
-   source myenv/bin/activate   # Activate virtual environment
-   
-   **Windows**
-   
-   python -m venv venv      # Create virtual environment
-   venv\Scripts\activate    # Activate virtual environment
+   ```sh   
+   pip3 install virtualenv        # Install virtual environment
+   virtualenv myenv               # Create virtual environment
+
+   source myenv/bin/activate      # Activate virtual environment (MacOS)
+   myenv/bin/activate             # Activate virtual environment (Windows)
    ```
-   
+      
 3. Install project dependencies listed in requirements.txt:
    
     ```sh
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     ```
     
 4. [Optional] If you wish to integrate Firebase for data uploading, create a file named credentials.json and put it in the root folder. Then, paste your Firebase credentials into this file.
