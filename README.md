@@ -23,16 +23,16 @@ PyBnB is a powerful Python application designed to empower real estate investors
 2. [Optional, but recommended] Set up and activate a virtual environment to isolate project dependencies:
    
    ```sh
-   MacOS
+   **MacOS**
    
    pip3 install virtualenv     # Create virtual environment
    virtualenv myenv
    source myenv/bin/activate   # Activate virtual environment
    
-   Windows
+   **Windows**
    
    python -m venv venv      # Create virtual environment
-   venv\Scripts\activate    # Activate virtual environment (Windows)
+   venv\Scripts\activate    # Activate virtual environment
    ```
    
 3. Install project dependencies listed in requirements.txt:
