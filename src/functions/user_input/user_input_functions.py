@@ -5,11 +5,11 @@ from constants.constants import STATES
 def get_option():
 
     print("\tWelcome to PyBnB")
-    print("--------------------------------")
+    print("-" * 32)
     print("1. Search by City Name")
     print("2. Search by State Name")
     print("3. Quit")
-    print("--------------------------------")
+    print("-" * 32)
 
     return input("Please choose an option (1-3): ").strip()
 
@@ -18,11 +18,7 @@ def get_city():
     city = input("City: ").strip().upper()
 
     # Check input validity
-
-    if city != "":
-        return city
-    else:
-        return ""
+    return city if city != "" else ""
 
 
 def get_state():
