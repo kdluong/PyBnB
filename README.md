@@ -41,9 +41,9 @@ PyBnB is a powerful Python application designed to empower real estate investors
     pip install -r requirements.txt
     ```
     
-5. [Optional] Create a file named credentials.json and paste your Firebase credentials to enable Firebase integration for uploading data.
+4. [Optional] If you wish to integrate Firebase for data uploading, create a file named credentials.json and put it in the root folder. Then, paste your Firebase credentials into this file.
    
-6. Run! 
+5. Run! 
 
    ```sh
     python src/main.py
