@@ -2,6 +2,8 @@
 
 PyBnB is a powerful Python application designed to empower real estate investors with valuable insights into property investment opportunities across the United States. Leveraging real-time data from Zillow and Airbnb, PyBnB fetches and analyzes property data for cities nationwide, providing investors with key metrics including property growth rates, gross rental yields, average Airbnb rates, and median listing prices from the preceding 12 months.
 
+![Alt Text](assets/firebase.png)
+
 ### Built With
 
 1. Firebase
