@@ -4,7 +4,7 @@ PyBnB is a powerful Python application designed to empower real estate investors
 
 ![Alt Text](assets/firebase.png)
 
-Note: This example demonstrates the usage on CA, OR, and NE only. You can run it on any state you want.
+Note: This example demonstrates the usage on CA, NE, and OR only. You can run it on any state you want.
 
 ### Built With
 
